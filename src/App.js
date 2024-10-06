@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Navigate, Route, Routes } from "react-router-dom";
+import MainPage from "./pages/main";
+import AuthPage from "./pages/auth";
+import { ThemeProvider } from "@emotion/react";
+import { THEME } from "./utils/theme";
+import Header from "./components/header";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "./components/auth-provider";
 
 function App() {
+  const authContext = useContext(AuthContext);
+
+  const isAuth = authContext?.userData?.isAuth;
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      authContext?.setUserData({ ...JSON.parse(user), isAuth: true });
+    }
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={THEME}>
+      <Header />
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        {!isAuth && (
+          <>
+            <Route path="/login" element={<AuthPage />} />
+            <Route path="/registration" element={<AuthPage />} />
+          </>
+        )}
+        <Route path="*" element={<Navigate to={"/"} />} />
+      </Routes>
+    </ThemeProvider>
   );
 }
 

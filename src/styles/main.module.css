@@ -1,0 +1,68 @@
+.paper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  padding: 2rem;
+}
+
+.container {
+  border-radius: 0.5rem;
+  padding: 20px;
+  gap: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.paperContainer,
+.containerTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.paperContainer {
+  width: 30%;
+  min-height: 300px;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+
+.containerTitle {
+  gap: 10px;
+}
+
+.image {
+  width: 150px;
+  height: 150px;
+}
+
+.content {
+  min-height: 300px;
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.dailyContainer {
+  display: flex;
+  margin-top: 1rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.dailyWeather {
+  padding: 1rem;
+  box-sizing: border-box;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.dailyWeather img {
+  width: 85px;
+  height: 85px;
+}
